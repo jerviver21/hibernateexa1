@@ -10,7 +10,10 @@ public class Message {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	private Long id;
+
+	
+	
 
 	private String text;
 
@@ -21,5 +24,12 @@ public class Message {
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	
+	
 
 }

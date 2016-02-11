@@ -19,8 +19,11 @@ public class Main {
 			em.getTransaction().begin();
 			Message me = new Message();
 			me.setText(msg);
+			System.out.println("Before persist: "+me.getId());
 			em.persist(me);
+			System.out.println("Before Insert: "+me.getId());
 			em.getTransaction().commit();
+			System.out.println("After Insert: "+me.getId());
 			em.close();
 		} catch (Exception e) {
 			e.printStackTrace();
