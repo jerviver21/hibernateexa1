@@ -1,5 +1,6 @@
 package edu.paideia.hibernate.exa1.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import edu.paideia.hibernate.exa1.model.Category1;
+import edu.paideia.hibernate.exa1.model.Category1Summary;
 
 public class Category1Service {
 	
@@ -25,14 +27,31 @@ public class Category1Service {
 	}
 	
 	
-	public Category1 getCategory1(String name){
+	public Category1 getCategory1ByName(String name){
 		@SuppressWarnings("unchecked")
-		List<Category1> categories = em.createQuery("SELECT c FROM Category1 c WHERE c.name = :name")
+		List<Category1> categories = em.createNamedQuery("categoryByName")
 									 .setParameter("name", name).getResultList();
 		if(!categories.isEmpty()){
 			return categories.get(0);
 		}
 		return null;
+	}
+	
+	public Category1 getCategory1ByDate(Date date){
+		@SuppressWarnings("unchecked")
+		List<Category1> categories = em.createNamedQuery("categoryByDate")
+									 .setParameter("date", date).getResultList();
+		if(!categories.isEmpty()){
+			return categories.get(0);
+		}
+		return null;
+	}
+	
+	public List<Category1Summary> getCategory1Summary(){
+		@SuppressWarnings("unchecked")
+		List<Category1Summary> categories = em.createQuery("SELECT c FROM Category1Summary c")
+			.getResultList();
+		return categories;
 	}
 
 }

@@ -1,3 +1,7 @@
+ /* 
+ * Taller1
+ * Ejemplo de Entidad y sus respectivas validaciones.
+ */
 package edu.paideia.hibernate.exa1.model;
 
 import java.util.Date;

@@ -15,7 +15,7 @@ public class Message {
 	
 	
 
-	private String text;
+	private String text; 
 
 	public String getText() {
 		return text;
