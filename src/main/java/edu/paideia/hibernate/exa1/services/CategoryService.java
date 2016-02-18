@@ -9,14 +9,15 @@ import javax.persistence.Persistence;
 
 import edu.paideia.hibernate.exa1.model.Category1;
 import edu.paideia.hibernate.exa1.model.Category1Summary;
+import edu.paideia.hibernate.exa1.model.Category2;
 
-public class Category1Service {
+public class CategoryService {
 	
 	private final String PU = "HelloWorldPU";
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);
 	EntityManager em;
 	
-	public Category1Service(){
+	public CategoryService(){
 		em = emf.createEntityManager();
 	}
 	
@@ -52,6 +53,23 @@ public class Category1Service {
 		List<Category1Summary> categories = em.createQuery("SELECT c FROM Category1Summary c")
 			.getResultList();
 		return categories;
+	}
+
+	public void saveCategory(Category2 c) {
+		em.getTransaction().begin();
+		em.persist(c);
+		em.getTransaction().commit();
+		
+	}
+
+	public Category2 getCategory2ByName(String name) {
+		@SuppressWarnings("unchecked")
+		List<Category2> categories = em.createNamedQuery("category2ByName")
+									 .setParameter("name", name).getResultList();
+		if(!categories.isEmpty()){
+			return categories.get(0);
+		}
+		return null;
 	}
 
 }
