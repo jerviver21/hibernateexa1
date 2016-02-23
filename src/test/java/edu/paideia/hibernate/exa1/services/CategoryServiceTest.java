@@ -6,19 +6,19 @@ import static org.junit.Assert.assertTrue;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.ConstraintViolationException;
-
 import org.junit.Test;
 
+import edu.paideia.hibernate.exa1.model.Address;
 import edu.paideia.hibernate.exa1.model.Category1;
 import edu.paideia.hibernate.exa1.model.Category1Summary;
 import edu.paideia.hibernate.exa1.model.Category2;
 import edu.paideia.hibernate.exa1.model.CategoryType;
+import edu.paideia.hibernate.exa1.model.Employee;
 
 public class CategoryServiceTest {
 
 	//Taller1
-	@Test(expected=ConstraintViolationException.class)
+	//@Test(expected=ConstraintViolationException.class)
 	public void testValidationDate()throws Exception {
 		Date date = new Date();
 		Category1 c1 = new Category1();
@@ -29,7 +29,7 @@ public class CategoryServiceTest {
 	}
 	
 	//Taller1
-	@Test(expected=ConstraintViolationException.class)
+	//@Test(expected=ConstraintViolationException.class)
 	public void testValidationNameSize()throws Exception {	
 		Date date = new Date(new Date().getTime()+(1*24*60*1000));
 		Category1 c1 = new Category1();
@@ -40,7 +40,7 @@ public class CategoryServiceTest {
 	}
 	
 	//Taller1, Taller2
-	@Test
+	//@Test
 	public void testSaveCategory1() {
 		String categoryName = "Category"+(int)(Math.random()*1000000);
 
@@ -66,7 +66,7 @@ public class CategoryServiceTest {
 	}
 	
 	//Taller4
-	@Test
+	//@Test
 	public void testCategorySummary() {
 		CategoryService c1s = new CategoryService();
 		List<Category1Summary> list = c1s.getCategory1Summary();
@@ -76,7 +76,7 @@ public class CategoryServiceTest {
 	
 	
 	//Taller5, Taller6
-	@Test
+	//@Test
 	public void testSaveCategory2() {
 		String categoryName = "Category"+(int)(Math.random()*1000000);
 		
@@ -96,6 +96,36 @@ public class CategoryServiceTest {
 		
 		System.out.println(">>>>>>>>>: "+c2.getFrag()+" --- "+c2.getFirstCreate());
 			
+		
+	}
+	
+	//Taller7
+	@Test
+	public void testSaveEmployee() {
+		Employee e1 = new Employee();
+		Address a1 = new Address();
+		Address a2 = new Address();
+		
+		a1.setStreet("Aureliano");
+		a1.setNumber(11);
+		
+		a2.setStreet("Siempre Viva");
+		a2.setNumber(123);
+
+		e1.setName("Jerson Viveros");
+		e1.setAddress(a1);
+		e1.setAlterAddress(a2);
+		
+		Employee e2 = new Employee();
+		e2.setName("Michael Viveros");
+		
+		
+		
+		CategoryService cs = new CategoryService();
+		cs.saveEmployee(e1);
+		cs.saveEmployee(e2);
+		
+		
 		
 	}
 	

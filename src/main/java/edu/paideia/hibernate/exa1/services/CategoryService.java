@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import edu.paideia.hibernate.exa1.model.Category1;
 import edu.paideia.hibernate.exa1.model.Category1Summary;
 import edu.paideia.hibernate.exa1.model.Category2;
+import edu.paideia.hibernate.exa1.model.Employee;
 
 public class CategoryService {
 	
@@ -58,6 +59,13 @@ public class CategoryService {
 	public void saveCategory(Category2 c) {
 		em.getTransaction().begin();
 		em.persist(c);
+		em.getTransaction().commit();
+		
+	}
+	
+	public void saveEmployee(Employee e) {
+		em.getTransaction().begin();
+		em.persist(e);
 		em.getTransaction().commit();
 		
 	}
