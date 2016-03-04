@@ -101,40 +101,6 @@ public class CategoryServiceTest {
 		
 	}
 	
-	//Taller7, Taller 8
-	@Test
-	public void testSaveEmployee() {
-		Employee e1 = new Employee();
-		Address a1 = new Address();
-		Address a2 = new Address();
-		MonetaryAmount ma = new MonetaryAmount(5849000l, Currency.getInstance("COP"));
-		
-		a1.setStreet("Aureliano");
-		a1.setNumber(11);
-		
-		a2.setStreet("Siempre Viva");
-		a2.setNumber(123);
-
-		e1.setName("Jerson Viveros");
-		e1.setAddress(a1);
-		e1.setAlterAddress(a2);
-		e1.setSalary(ma);
-		
-		
-		
-		
-		Employee e2 = new Employee();
-		e2.setName("Michael Viveros");
-		e2.setSalary(new MonetaryAmount(3000000l, Currency.getInstance("COP") ));
-		
-		
-		
-		CategoryService cs = new CategoryService();
-		cs.saveEmployee(e1);
-		cs.saveEmployee(e2);
-		
-		
-		
-	}
+	
 	
 }

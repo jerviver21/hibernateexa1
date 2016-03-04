@@ -63,12 +63,6 @@ public class CategoryService {
 		
 	}
 	
-	public void saveEmployee(Employee e) {
-		em.getTransaction().begin();
-		em.persist(e);
-		em.getTransaction().commit();
-		
-	}
 
 	public Category2 getCategory2ByName(String name) {
 		@SuppressWarnings("unchecked")
