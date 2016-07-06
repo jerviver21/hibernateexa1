@@ -1,5 +1,7 @@
 package edu.paideia.hibernate.exa1.services;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
@@ -44,42 +46,49 @@ public class EmployeeServiceTest {
 		e2.setSalary(new MonetaryAmount(3000000l, Currency.getInstance("COP") ));
 		
 		
-		BankAccountE2 account = new BankAccountE2();
-		account.setOwner("Jerson Viveros");
-		account.setAccountNumber("092456312-1");
-		account.setEmployee(e1);
+		BankAccountE2 accountE2 = new BankAccountE2();
+		accountE2.setOwner("Jerson Viveros");
+		accountE2.setAccountNumber("092456312-1");
+		accountE2.setEmployee(e1);
 		
-		CreditCardE2 creditCard1 = new CreditCardE2();
-		creditCard1.setCardNumber("6362150001739999");
-		creditCard1.setOwner("Jerson Viveros");
-		creditCard1.setEmployee(e2);
-		
-		
-		CreditCardE1 creditCard = new CreditCardE1();
-		creditCard.setCardNumber("6362150001739483");
-		creditCard.setOwner("Jerson Viveros");
-		creditCard.setEmployee(e1);
+		CreditCardE2 creditCardE2 = new CreditCardE2();
+		creditCardE2.setCardNumber("6362150001739999");
+		creditCardE2.setOwner("Jerson Viveros");
+		creditCardE2.setEmployee(e2);
 		
 		
-		List<CreditCardE1> cards = new ArrayList<>();
-		cards.add(creditCard);
+		CreditCardE1 creditCardE1 = new CreditCardE1();
+		creditCardE1.setCardNumber("6362150001739483");
+		creditCardE1.setOwner("Jerson Viveros");
+		creditCardE1.setEmployee(e1);
 		
-		List<BillingDetailsE2> accountsE1 = new ArrayList<>();
-		List<BillingDetailsE2> accountsE2 = new ArrayList<>();
-		accountsE1.add(account);
-		accountsE2.add(creditCard1);
 		
-		e1.setAccount(accountsE1);
-		e1.setCreditCard(cards);
+		List<CreditCardE1> cardsE1 = new ArrayList<>();
+		cardsE1.add(creditCardE1);
 		
-		e2.setAccount(accountsE2);
+		List<BillingDetailsE2> bankAccountsE2 = new ArrayList<>();
+		List<BillingDetailsE2> creditCardsE2 = new ArrayList<>();
+		bankAccountsE2.add(accountE2);
+		creditCardsE2.add(creditCardE2);
+		
+		e1.setAccount(bankAccountsE2);
+		e1.setCreditCard(cardsE1);
+		
+		e2.setAccount(creditCardsE2);
 		
 		EmployeeService cs = new EmployeeService();
 		cs.save(e1);
 		cs.save(e2);
 		
-			
 		
+		Employee e = cs.getEmployeeByName(e1.getName());
+		BankAccountE2 ba2 = (BankAccountE2)e.getAccount().get(0);
+		System.out.println("************"+ba2.getOwner()+" <-> "+ba2.getAccountNumber());
+		System.out.println("************"+e.getCreditCard().get(0).getOwner());
+		
+		assertEquals(e1.getAccount().size(), e.getAccount().size());
+		assertEquals(e1.getCreditCard().size(), e.getCreditCard().size());
+		assertEquals(ba2.getAccountNumber(), accountE2.getAccountNumber());
 	}
 
 }

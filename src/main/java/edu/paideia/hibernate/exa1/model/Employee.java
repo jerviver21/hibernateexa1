@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +23,13 @@ import edu.paideia.hibernate.exa1.model.inherit.CreditCardE1;
 
 //Taller7
 @Entity
+@NamedQueries({
+	@NamedQuery(
+			name="employeeByName", 
+			query="SELECT c FROM Employee c WHERE c.name = :name"
+	)
+})
+
 public class Employee {
 	
 	@Id

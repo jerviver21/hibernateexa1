@@ -1,5 +1,7 @@
 package edu.paideia.hibernate.exa1.services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,6 +22,16 @@ public class EmployeeService {
 		em.getTransaction().begin();
 		em.persist(employee);
 		em.getTransaction().commit();
+	}
+	
+	public Employee getEmployeeByName(String name){
+		@SuppressWarnings("unchecked")
+		List<Employee> employees = em.createNamedQuery("employeeByName")
+		 							.setParameter("name", name).getResultList();
+		if(!employees.isEmpty()){
+			return employees.get(0);
+		}
+		return null;
 	}
 
 }
