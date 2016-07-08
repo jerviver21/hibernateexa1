@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import edu.paideia.hibernate.exa1.model.Employee;
+import edu.paideia.hibernate.exa1.model.EmployeeIH1;
 
 
 @Entity
@@ -24,7 +24,7 @@ public class CreditCardE1 extends BillingDetailsE1 {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="employee_id")
-	private Employee employee;
+	private EmployeeIH1 employee;
 	
 
 	public String getCardNumber() {
@@ -43,11 +43,11 @@ public class CreditCardE1 extends BillingDetailsE1 {
 		this.id = id;
 	}
 
-	public Employee getEmployee() {
+	public EmployeeIH1 getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Employee employee) {
+	public void setEmployee(EmployeeIH1 employee) {
 		this.employee = employee;
 	}
 

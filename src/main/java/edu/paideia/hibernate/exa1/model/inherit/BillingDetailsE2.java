@@ -23,10 +23,6 @@ public class BillingDetailsE2 {
 	@NotNull
 	private String owner;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="employee_id")
-	private Employee employee;
-	
 
 	public Long getId() {
 		return id;
@@ -42,14 +38,6 @@ public class BillingDetailsE2 {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 
 }
