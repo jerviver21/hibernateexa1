@@ -42,7 +42,7 @@ public class EmployeeIH3 {
 	private String name;
 
 	//Taller9: Single table.
-	@OneToMany(mappedBy="employee", cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="employee", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	private List<BillingDetailsE3> billingDetails;
 
 	public Long getId() {

@@ -1,8 +1,17 @@
 package edu.paideia.hibernate.exa1.services;
 
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +43,12 @@ public class EmployeeServiceTest {
 	EmployeeIH4 e4_1;
 	EmployeeIH4 e4_2;
 	EmployeeIH4 e4_3;
+	
+	//Mocks
+	EntityManager emMock = mock(EntityManager.class);
+	Query qmReturnE41 = mock(Query.class);
+	Query qmReturnE41WithParameter = mock(Query.class);
+	
 	
 	@Before
 	public void init(){
@@ -68,10 +83,17 @@ public class EmployeeServiceTest {
 		
 		e4_3 = new EmployeeIH4();
 		e4_3.setName("E4_3 Viveros");
+		
+		
+		EmployeeIH4 e41m = new EmployeeIH4();
+		e41m.setName(e4_1.getName());
+		when(emMock.createNamedQuery("employee4ByName")).thenReturn(qmReturnE41);
+		when(qmReturnE41.setParameter("name", e4_1.getName())).thenReturn(qmReturnE41WithParameter);
+		when(qmReturnE41WithParameter.getSingleResult()).thenReturn(e41m);
 	}
 
 	//Taller7 y Taller8
-	@Test
+	//@Test
 	public void testTypingConverting() {
 		Address a1 = new Address();
 		Address a2 = new Address();
@@ -93,6 +115,7 @@ public class EmployeeServiceTest {
 
 	}
 	
+	//Taller9
 	//@Test
 	public void testInhStrategy1(){
 
@@ -127,6 +150,7 @@ public class EmployeeServiceTest {
 
 	}
 	
+	//Taller10
 	//@Test
 	public void testInhStrategy2(){
 
@@ -155,13 +179,13 @@ public class EmployeeServiceTest {
 		BankAccountE2 ba1 = (BankAccountE2)e.getBillingDetail();
 		System.out.println("************"+ba1.getOwner()+" <-> "+ba1.getAccountNumber());
 		EmployeeIH2 e1 = cs.getEmployee2ByName(e2_2.getName());
-		System.out.println("************"+((CreditCardE2)e.getBillingDetail()).getCardNumber());
+		System.out.println("************"+((CreditCardE2)e1.getBillingDetail()).getCardNumber());
 
 	}
 
-	@Test
+	//Taller11
+	//@Test
 	public void testInhStrategy3() {
-
 		BankAccountE3 account = new BankAccountE3();
 		account.setOwner(e3.getName());
 		account.setAccountNumber("092456312-1");
@@ -189,16 +213,11 @@ public class EmployeeServiceTest {
 		EmployeeService cs = new EmployeeService();
 		cs.save(e3);
 		
-		
 		EmployeeIH3 e = cs.getEmployee3ByName(e3.getName());
-		BankAccountE3 ba = (BankAccountE3)e3.getBillingDetails().get(0);
-		CreditCardE3 cc = (CreditCardE3)e3.getBillingDetails().get(1);
-		System.out.println("************"+ba.getOwner()+" <-> "+ba.getAccountNumber());
-		System.out.println("************"+cc.getCardNumber());
-		
+		System.out.println("************"+e.getBillingDetails().get(0).getOwner()+" <-> "+e.getName());	
 	}
 	
-	
+	//Taller12
 	//@Test
 	public void testInhStrategy4(){
 
@@ -227,8 +246,20 @@ public class EmployeeServiceTest {
 		BankAccountE4 ba1 = (BankAccountE4)e.getBillingDetail();
 		System.out.println("************"+ba1.getOwner()+" <-> "+ba1.getAccountNumber());
 		EmployeeIH4 e1 = cs.getEmployee4ByName(e4_2.getName());
-		System.out.println("************"+((CreditCardE4)e.getBillingDetail()).getCardNumber());
+		System.out.println("************"+((CreditCardE4)e1.getBillingDetail()).getCardNumber());
 	}
+	
+	
+	//Taller 13
+	@Test
+	public void testGetEmployee4ByName(){
+		EmployeeService cs = new EmployeeService();
+		cs.setEm(emMock);
+		EmployeeIH4 e = cs.getEmployee4ByName(e4_1.getName());
+		assertEquals(e.getName(), e4_1.getName());
+		System.out.println("****************"+e.getName());
+	}
+	
 
 
 }

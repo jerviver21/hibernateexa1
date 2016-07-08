@@ -1,5 +1,6 @@
 package edu.paideia.hibernate.exa1.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class EmployeeIH2 {
 	@NotNull
 	private String name;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
 	private BillingDetailsE2 billingDetail;
 	
 

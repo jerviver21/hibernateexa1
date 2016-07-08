@@ -15,7 +15,7 @@ import edu.paideia.hibernate.exa1.model.EmployeeIH4;
 public class EmployeeService {
 	
 	private final String PU = "HelloWorldPU";
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);
 	EntityManager em;
 	
 	public EmployeeService(){
@@ -70,6 +70,14 @@ public class EmployeeService {
 	
 	public EmployeeIH4 getEmployee4ByName(String name){
 		return (EmployeeIH4)em.createNamedQuery("employee4ByName").setParameter("name", name).getSingleResult();
+	}
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager emf) {
+		this.em = emf;
 	}
 
 }
