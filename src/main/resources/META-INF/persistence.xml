@@ -7,7 +7,7 @@
 		<!-- <class>edu.paideia.hibernate.exa1.model.Message</class> -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			<!-- <property name="javax.persistence.schema-generation.database.action" value="create" /> -->
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
 			<property name="hibernate.physical_naming_strategy" value="edu.paideia.hibernate.exa1.config.PNamingStrategy"/>
 			<!-- <property name="hibernate.show_sql" value="true"/> -->
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->

@@ -50,6 +50,10 @@ public class Item implements Serializable {
 	@MapKeyColumn(name="name")
 	private Map<String, String> imagesMap = new HashMap<>();
 	
+	
+	@ElementCollection
+	private List<Image> imagesEmbeed = new ArrayList<>();
+	
 	public Item() {
 		super();
 	}
@@ -105,6 +109,14 @@ public class Item implements Serializable {
 
 	public void setImagesMap(Map<String, String> imagesMap) {
 		this.imagesMap = imagesMap;
+	}
+
+	public List<Image> getImagesEmbeed() {
+		return imagesEmbeed;
+	}
+
+	public void setImagesEmbeed(List<Image> imagesEmbeed) {
+		this.imagesEmbeed = imagesEmbeed;
 	}
    
 }

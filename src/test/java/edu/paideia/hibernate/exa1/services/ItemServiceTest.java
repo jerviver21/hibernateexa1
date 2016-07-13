@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.Before;
 import org.junit.Test;
 
+import edu.paideia.hibernate.exa1.model.associations.Image;
 import edu.paideia.hibernate.exa1.model.associations.Item;
 
 public class ItemServiceTest {
 	
-	@Test
+	//@Test
 	public void testSaveItemSet(){
 		System.out.println("running items set");
 		Item item1 = new Item("item1");
@@ -25,7 +25,7 @@ public class ItemServiceTest {
 		is.save(item1);
 	}
 	
-	@Test
+	//@Test
 	public void testSaveItemBag(){
 		System.out.println("running items bag");
 		Item item1 = new Item("item2");
@@ -39,7 +39,7 @@ public class ItemServiceTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testSaveItemList(){
 		Item item2 = new Item("item3");
 		List<String> images = item2.getImagesList();
@@ -53,7 +53,7 @@ public class ItemServiceTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testSaveItemMap(){
 		Item item2 = new Item("item2");
 		Map<String, String> images = item2.getImagesMap();
@@ -64,6 +64,18 @@ public class ItemServiceTest {
 		ItemService is = new ItemService();
 		is.save(item2);
 		
+	}
+	
+	//@Test
+	public void testSaveItemEmbeed(){
+		Item item2 = new Item("itemEmbeed");
+		List<Image> images = item2.getImagesEmbeed();
+		images.add(new Image("ie1","ie1.jpg",10,20));
+		images.add(new Image("ie2","ie2.jpg",10,20));
+		images.add(new Image("ie3","ie3.jpg",10,20));
+		
+		ItemService is = new ItemService();
+		is.save(item2);
 	}
 
 }
