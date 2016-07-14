@@ -7,8 +7,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import edu.paideia.hibernate.exa1.model.associations.Bid;
 import edu.paideia.hibernate.exa1.model.associations.Image;
 import edu.paideia.hibernate.exa1.model.associations.Item;
+import edu.paideia.hibernate.exa1.model.associations.Item1;
 
 public class ItemServiceTest {
 	
@@ -76,6 +78,18 @@ public class ItemServiceTest {
 		
 		ItemService is = new ItemService();
 		is.save(item2);
+	}
+	
+	//Taller 14
+	@Test
+	public void testSaveItem1(){
+		Item1 item2 = new Item1("Item test OneToMany");
+		item2.getBids().add(new Bid("bid1", item2));
+		item2.getBids().add(new Bid("bid2", item2));
+		item2.getBids().add(new Bid("bid3", item2));
+		
+		ItemService is = new ItemService();
+		is.save(item2);		
 	}
 
 }

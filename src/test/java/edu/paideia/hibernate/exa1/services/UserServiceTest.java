@@ -7,7 +7,7 @@ import edu.paideia.hibernate.exa1.model.associations.User;
 
 public class UserServiceTest {
 	
-	@Test
+	//@Test
 	public void testSaveUser(){
 		System.out.println("running users test");
 		Address1 add = new Address1();
