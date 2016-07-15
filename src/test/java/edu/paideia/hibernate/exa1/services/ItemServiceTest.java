@@ -81,7 +81,7 @@ public class ItemServiceTest {
 	}
 	
 	//Taller 14
-	@Test
+	//@Test
 	public void testSaveItem1(){
 		Item1 item2 = new Item1("Item test OneToMany");
 		item2.getBids().add(new Bid("bid1", item2));
