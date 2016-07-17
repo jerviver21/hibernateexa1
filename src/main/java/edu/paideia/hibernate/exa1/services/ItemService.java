@@ -6,6 +6,7 @@ import javax.persistence.Persistence;
 
 import edu.paideia.hibernate.exa1.model.associations.Item;
 import edu.paideia.hibernate.exa1.model.associations.Item1;
+import edu.paideia.hibernate.exa1.model.associations.om.ItemOM;
 
 public class ItemService {
 	private final String PU = "HelloWorldPU";
@@ -23,6 +24,12 @@ public class ItemService {
 	}
 	
 	public void save(Item1 item){
+		em.getTransaction().begin();
+		em.persist(item);
+		em.getTransaction().commit();
+	}
+	
+	public void save(ItemOM item){
 		em.getTransaction().begin();
 		em.persist(item);
 		em.getTransaction().commit();

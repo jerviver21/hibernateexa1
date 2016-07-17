@@ -24,6 +24,15 @@ public class CategoryOM1 {
 	@ManyToMany(cascade=CascadeType.PERSIST)
 	private Set<ItemOM> items = new HashSet<>();
 
+	
+	public CategoryOM1(){
+		
+	}
+	
+	public CategoryOM1(String name){
+		this.name = name;
+	}
+	
 	public Set<ItemOM> getItems() {
 		return items;
 	}
